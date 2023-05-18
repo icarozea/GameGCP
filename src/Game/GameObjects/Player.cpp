@@ -19,6 +19,7 @@ void Player::init(){
     transform.setPosition(0, 0, 0);
     speed = 0;
     bLight = false;
+	bReduceSpeed = false;
     
     coins = 0;
 }
@@ -29,6 +30,7 @@ void Player::update(){
     
     if(speed > MAX_SPEED) speed = MAX_SPEED;
     if(speed < 0) speed = 0;
+	//bReduceSpeed = false;
 }
 
 void Player::draw(){
@@ -96,4 +98,8 @@ int Player::getCoins(){
 }
 void Player::shoot(){
     game->addGameObject(new Bullet(game, transform));
+}
+
+void Player::reduceSpeed() {
+		speed = MIN_SPEED;
 }

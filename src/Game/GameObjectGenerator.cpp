@@ -7,6 +7,7 @@
 #include "Coin.h"
 #include "Pedestrian.h"
 #include "SpaceShip.h"
+#include "Sand.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -18,6 +19,7 @@ void GameObjectGenerator::generateWorld(){
     auto road = new Road(game, roadPosition, glm::vec3(W, 0, L));
     
     game->addGameObject(road);
+
 //
     int wallSize = 100;
 
@@ -91,13 +93,23 @@ void GameObjectGenerator::generateWorld(){
 
 	auto pedestrian2 = new Pedestrian(game,
 		glm::vec3(W / 2 - 200, -25, 700), glm::vec3(50, 150, 50));
+	/*for (int i = 0; i < 10; i++) {
+		auto pedestrian = new Pedestrian(game,
+			glm::vec3(W / 2 - 100 - 25 * i, -25, 300 * (i + 1)), glm::vec3(50, 150, 50));
+		game->addGameObject(pedestrian2);
+	}*/
 
    
 	game->addGameObject(pedestrian2);
 
 	auto spaceShip = new SpaceShip(game,
-		glm::vec3((W / 2) - 500, -25, 900), glm::vec3(50, 150, 50));
+		glm::vec3((W / 2) - 500, 300, 900), glm::vec3(200, 50, 300));
 
 	game->addGameObject(spaceShip);
+
+	auto sand = new Sand(game, 
+		glm::vec3((W / 2) - 500, -48.5, 7200), glm::vec3(800));
+
+	game->addGameObject(sand);
 
 }

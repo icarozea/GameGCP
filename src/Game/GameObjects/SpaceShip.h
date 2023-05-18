@@ -12,6 +12,7 @@ public:
 
 	void update() override;
 	void draw() override;
+	void drawDebug() override;
 	void shoot();
 	ofxAssimpModelLoader model;
 };

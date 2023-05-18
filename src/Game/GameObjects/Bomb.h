@@ -10,5 +10,6 @@ public:
 	void update() override;
 	void draw() override;
 	void checkCollisions() override;
+	void drawDebug() override;
 
 };

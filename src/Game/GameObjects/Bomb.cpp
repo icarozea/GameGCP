@@ -11,7 +11,7 @@ Bomb::Bomb(Game *game, ofNode otherTransform)
 Bomb::~Bomb() {}
 
 void Bomb::update() {
-	transform.move(transform.getYAxis() * 2);
+	transform.move(transform.getYAxis() * -2);
 };
 
 void Bomb::draw() {
@@ -23,6 +23,14 @@ void Bomb::draw() {
 	material.end();
 
 };
+
+void Bomb::drawDebug() {
+	collider->drawDebug();
+
+	transform.transformGL();
+	ofDrawAxis(100);
+	transform.restoreTransformGL();
+}
 
 void Bomb::checkCollisions() {
 	vector<GameObject*> collisions = game->getCollisions(this);
