@@ -3,6 +3,7 @@
 #define Bullet_h
 
 #include "GameObject.h"
+#include "Obstacle.h"
 
 class Bullet : public GameObject{
     

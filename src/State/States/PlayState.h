@@ -9,7 +9,7 @@ class PlayState: public State{
 public:
     PlayState(Game *game);
     
-    ~PlayState(){};
+    ~PlayState() {};
     
     void update();
     void draw();

@@ -6,8 +6,8 @@
 class Road : public GameObject{
     
     ofLight light;
-	ofLight light2;
-	ofLight light3;
+    ofLight light2;
+    ofLight light3;
     ofPlanePrimitive plane;
 public:
     Road(Game *game, glm::vec3 pos, glm::vec3 dim);

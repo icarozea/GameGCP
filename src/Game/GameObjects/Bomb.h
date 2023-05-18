@@ -4,7 +4,7 @@
 class Bomb : public GameObject {
 
 public:
-	Bomb(Game *game, ofNode transform);
+	Bomb(Game* game, ofNode transform);
 	~Bomb();
 
 	void update() override;
@@ -13,3 +13,4 @@ public:
 	void drawDebug() override;
 
 };
+

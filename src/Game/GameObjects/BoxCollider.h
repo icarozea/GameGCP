@@ -9,7 +9,7 @@ class ofxBulletRigidBody;
 
 class BoxCollider : public ofBoxPrimitive{
     GameObject *gameObject;
-	bool bColliding;
+    bool bColliding;
 public:
     ofxBulletRigidBody *collisionObject;
     BoxCollider(GameObject *gameObject);

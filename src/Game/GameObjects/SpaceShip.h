@@ -7,7 +7,7 @@ class SpaceShip : public GameObject {
 	bool bTurned;
 	float elapseTurningTime;
 public:
-	SpaceShip(Game *game, glm::vec3 pos, glm::vec3 dim);
+	SpaceShip(Game* game, glm::vec3 pos, glm::vec3 dim);
 	~SpaceShip();
 
 	void update() override;

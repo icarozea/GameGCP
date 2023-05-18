@@ -1,6 +1,7 @@
 #include "Game.h"
 #include "ResultState.h"
 #include "MenuState.h"
+#include "PauseState.h"
 
  
 ResultState::ResultState(Game *game): State(game, "Result State"){
@@ -19,3 +20,4 @@ void ResultState::draw(){
 void ResultState::next(){
     game->setState(new MenuState(game));
 };
+

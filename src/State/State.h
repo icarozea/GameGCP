@@ -20,6 +20,7 @@ public:
     virtual void update()=0;
     virtual void draw()=0;
     virtual void next()=0;
+
     virtual void keyPressed(int key){};
     virtual void keyReleased(int key){};
 };

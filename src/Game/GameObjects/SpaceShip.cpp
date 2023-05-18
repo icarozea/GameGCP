@@ -3,7 +3,7 @@
 #include "Game.h"
 #include "Bomb.h"
 
-SpaceShip::SpaceShip(Game *game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
+SpaceShip::SpaceShip(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
 	model.loadModel("Intergalactic_Spaceship.dae");
 	model.setRotation(0, 180, 0, 0, 1);
 	model.setScale(0.50, 0.50, 0.50);

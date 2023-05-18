@@ -1,6 +1,7 @@
 #include "PlayState.h"
 #include "ResultState.h"
 #include "Player.h"
+#include "PauseState.h"
 
 PlayState::PlayState(Game *game): State(game, "Play State"){
     game->init();
@@ -50,6 +51,8 @@ void PlayState::keyPressed(int key){
         game->getPlayer()->toggleLight();
     if(key == 'd')
         game->toggleDebug();
-    if(key == ' ')
+    if(key == 's')
         game->getPlayer()->shoot();
+    if (key == 'p')
+        game->setState(new PauseState(game));
 }
