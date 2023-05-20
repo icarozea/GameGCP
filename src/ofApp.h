@@ -17,5 +17,8 @@ class ofApp : public ofBaseApp{
 		
         Game *game;
 		Player *player;
+
+		int coins = 0;
+		float initTime = 0;
 		
 };

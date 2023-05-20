@@ -1,7 +1,6 @@
 #include "Game.h"
 #include "ResultState.h"
 #include "MenuState.h"
-#include "PauseState.h"
 
  
 ResultState::ResultState(Game *game): State(game, "Result State"){

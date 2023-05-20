@@ -14,6 +14,9 @@ public:
     void update();
     void draw();
     void next();
+
+    float initTime = 0;
+    int intCoins = 0;
         
 };
 #endif 

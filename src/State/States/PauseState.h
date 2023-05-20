@@ -13,10 +13,21 @@ public:
     void update();
     void draw();
     void next();
-    float initTime;
     void keyPressed(int key);
+    void resetStatus();
 
-    Pedestrian* pedestrian ;
+    ofTrueTypeFont font;
+        
+    float fps = 0;
+    int coins = 0;
+    float timePaused = 0;
+    bool getTime = true;
+    bool flash = true;
+    float flashTime = 0;
+    float flashTimeControl = 0.8f;
+
+    bool showTimer = true;
+    
 };
 #endif
 

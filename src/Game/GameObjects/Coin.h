@@ -15,6 +15,8 @@ public:
     void receiveBulletCollision(GameObject *bullet) override;
   
     ofxAssimpModelLoader model;
+    ofFbo fbo;
+    ofTexture texture;
 
 };
 

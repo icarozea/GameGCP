@@ -7,7 +7,7 @@
 
 class PlayState: public State{
 public:
-    PlayState(Game *game);
+    PlayState(Game *game, float initTime, float initCoins);
     
     ~PlayState() {};
     
@@ -15,6 +15,9 @@ public:
     void draw();
     void next();
     void keyPressed(int key);
+
+    float initTime;
+    int initCoins;
         
 };
 #endif

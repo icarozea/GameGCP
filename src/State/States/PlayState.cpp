@@ -3,7 +3,9 @@
 #include "Player.h"
 #include "PauseState.h"
 
-PlayState::PlayState(Game *game): State(game, "Play State"){
+PlayState::PlayState(Game *game, float currentTime, float coins): State(game, "Play State"){
+    initTime = currentTime;
+    initCoins = coins;
     game->init();
 };
 
@@ -30,11 +32,11 @@ void PlayState::draw(){
         ofTranslate(0, 20);
         ofDrawBitmapString(name, 0, 0);
         ofTranslate(0, 20);
-        ofDrawBitmapString("Time: " + ofToString(game->getEllapsedTime(), 2), 0, 0);
+        ofDrawBitmapString("Time: " + ofToString(initTime + game->getEllapsedTime(), 2), 0, 0);
         ofTranslate(0, 20);
         ofDrawBitmapString("Speed: " + ofToString(game->getPlayer()->getSpeed(), 2), 0, 0);
         ofTranslate(0, 20);
-        ofDrawBitmapString("Coins: " + ofToString(game->getPlayer()->getCoins(), 2), 0, 0);
+        ofDrawBitmapString("Coins: " + ofToString(initCoins + game->getPlayer()->getCoins(), 2), 0, 0);
 
     }
     ofPopMatrix();
