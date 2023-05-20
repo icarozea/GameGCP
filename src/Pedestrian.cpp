@@ -1,3 +1,5 @@
+
+
 #include "Pedestrian.h"
 #include "Player.h"
 #include "Game.h"
@@ -30,7 +32,7 @@ void Pedestrian::draw(){
     transform.transformGL();
     model.drawFaces();
     
-  //  ofDrawAxis(200);
+    //ofDrawAxis(200);
     transform.restoreTransformGL();
 
     //collider->drawWireframe();
@@ -45,14 +47,9 @@ void Pedestrian::receiveBulletCollision(GameObject *bullet) {
     
     bullet->kill();
     kill();
-    game->getPlayer()->addCoins(100);
+    game->getPlayer()->addCoins(1000);
  
-}
-void Pedestrian::setSpeed(int newSpeed)
-{
-    speed = newSpeed;
-}
-;
+};
 
 void Pedestrian::turn(){
     if(!bTurned){

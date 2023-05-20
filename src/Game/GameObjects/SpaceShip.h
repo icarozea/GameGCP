@@ -6,8 +6,9 @@ class SpaceShip : public GameObject {
 	float speed = -5;
 	bool bTurned;
 	float elapseTurningTime;
+	float elapseShootingTime;
 public:
-	SpaceShip(Game* game, glm::vec3 pos, glm::vec3 dim);
+	SpaceShip(Game *game, glm::vec3 pos, glm::vec3 dim);
 	~SpaceShip();
 
 	void update() override;

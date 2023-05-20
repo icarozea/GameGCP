@@ -6,8 +6,7 @@
 class Game;
 
 // TODO add speed settings
-#define MAX_SPEED 100
-#define MAX_SPEED 100
+#define MAX_SPEED 50
 #define MIN_SPEED 4
 
 class Player : public GameObject{
@@ -17,7 +16,10 @@ class Player : public GameObject{
     bool bLight;
     glm::vec3 prevPos;
     int coins;
-    
+	int timeSkidded;
+	float elapseSkiddedTime;
+	int turnLeft;
+	int turnRight;
 public:
     
     Player(Game *game);
@@ -37,9 +39,16 @@ public:
     void shoot();
     void brake();
     void stop();
+	void doubleSpeed();
+	void initPosition();
     void addCoins(int n = 1);
     int getCoins();
-    void reduceSpeed();
+	void removeAllCoins();
+	void reduceSpeed();
+	void moveCar();
+	int getTurnLeft();
+	int getTurnRight();
+	
 };
 
 #endif 

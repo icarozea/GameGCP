@@ -2,7 +2,6 @@
 #include "MenuState.h"
 #include "PlayState.h"
 #include "Player.h"
-#include "Bullet.h"
 
 //--------------------------------------------------------------
 void ofApp::setup(){
@@ -34,9 +33,8 @@ void ofApp::draw(){
 void ofApp::keyPressed(int key){
     if(key == ']')
         game->currentState()->next();
-
+    
     game->currentState()->keyPressed(key);
-   
 }
 
 

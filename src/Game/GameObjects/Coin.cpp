@@ -3,9 +3,10 @@
 #include "Game.h"
 
 
-Coin::Coin(Game *game, glm::vec3 pos, glm::vec3 dim):
-    GameObject(game, pos, dim){
+Coin::Coin(Game *game, glm::vec3 pos, glm::vec3 dim):GameObject(game, pos, dim) {
     material.setDiffuseColor(ofColor::yellow);
+        
+ 
     
 }
 Coin::~Coin(){
@@ -18,13 +19,20 @@ void Coin::update(){
 }
 
 void Coin::draw(){
-   
     
     material.begin();
     {
         collider->draw();
     }
     material.end();
+}
+
+void Coin::drawDebug() {
+	collider->drawDebug();
+
+	transform.transformGL();
+	ofDrawAxis(100);
+	transform.restoreTransformGL();
 }
 
 void Coin::receiveCarCollision(Player *car){
@@ -35,4 +43,5 @@ void Coin::receiveCarCollision(Player *car){
 void Coin::receiveBulletCollision(GameObject *bullet){
     bullet->kill();
     kill();
+    game->getPlayer()->addCoins(1000);
 }

@@ -1,7 +1,6 @@
 #include "PlayState.h"
 #include "ResultState.h"
 #include "Player.h"
-#include "PauseState.h"
 
 PlayState::PlayState(Game *game): State(game, "Play State"){
     game->init();
@@ -18,6 +17,7 @@ void PlayState::update(){
         game->getPlayer()->accelerate();
     if(ofGetKeyPressed(OF_KEY_DOWN))
         game->getPlayer()->brake();
+	
 };
     
 void PlayState::draw(){
@@ -35,6 +35,10 @@ void PlayState::draw(){
         ofDrawBitmapString("Speed: " + ofToString(game->getPlayer()->getSpeed(), 2), 0, 0);
         ofTranslate(0, 20);
         ofDrawBitmapString("Coins: " + ofToString(game->getPlayer()->getCoins(), 2), 0, 0);
+		ofTranslate(0, 20);
+		ofDrawBitmapString("Turn Left: " + ofToString(game->getPlayer()->getTurnLeft(), 2), 0, 0);
+		ofTranslate(0, 20);
+		ofDrawBitmapString("Turn Right: " + ofToString(game->getPlayer()->getTurnRight(), 2), 0, 0);
 
     }
     ofPopMatrix();
@@ -51,8 +55,6 @@ void PlayState::keyPressed(int key){
         game->getPlayer()->toggleLight();
     if(key == 'd')
         game->toggleDebug();
-    if(key == 's')
+    if(key == ' ')
         game->getPlayer()->shoot();
-    if (key == 'p')
-        game->setState(new PauseState(game));
 }

@@ -17,8 +17,6 @@ public:
     void draw() override;
     void receiveCarCollision(Player *car) override;
     void receiveBulletCollision(GameObject *bullet) override;
-
-    void setSpeed(int speed);
     
     void checkCollisions() override;
     void turn();
