@@ -3,15 +3,19 @@
 
 CrazyBow::CrazyBow(Game* game, glm::vec3 pos, glm::vec3 dim) :
 	GameObject(game, pos, dim) {
-	//std::cout << collider->getPosition() << endl;
-
-	randomValue = ofRandom(0, 100);
 	material.setDiffuseColor(ofColor::white);
+
+	collider->setPosition(pos);
+	collider->set(dim.x, dim.y, dim.z);
 
 	interval = 10.0f;
 	randomValue = ofRandom(47);
 
-	fbo.allocate(400, 400, GL_RGBA);
+	ofDisableArbTex();
+	ofEnableNormalizedTexCoords();
+
+	fbo.allocate(400, 400);
+	font.load("verdana.ttf", 55, true, true);
 }
 
 CrazyBow::~CrazyBow()
@@ -26,24 +30,22 @@ void CrazyBow::update()
 {
 	fbo.begin();
 	{
-		//ofBackground(255);
-		for (int i = 0; i < 100; i++) {
+		ofBackground(255);
+		timer += ofGetLastFrameTime();
+		if (timer >= interval) {
+			timer = 0;
+			getCoin = true;
+			randomValue = updateRandomNumber();
+
+			//std::cout << "Get Coin? " << getCoin << " | Value: " << randomValue << endl;
+
+			numbers = ofToString(randomValue);
 			ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255));
-			ofDrawCircle(ofRandom(400), ofRandom(400), 10);
+			font.drawString(ofToString(randomValue), collider->getPosition().x + 250, collider->getPosition().y);
+
 		}
 	}
 	fbo.end();
-
-	timer += ofGetLastFrameTime();
-	//std::cout << "Timer: " << timer;
-	if (timer >= interval) {
-		randomValue = updateRandomNumber();
-		getCoin = true;
-		std::cout << "Get Coin? " << getCoin << " | Value: " << randomValue << endl;
-
-		timer = 0;
-	}
-
 }
 
 void CrazyBow::draw()

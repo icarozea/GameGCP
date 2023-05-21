@@ -22,6 +22,9 @@ public:
 	bool getCoin = true;
 	int randomValue;
 
-	float timer = 0; // Contador de tempo
+	ofTrueTypeFont font;
+
+	float timer = 0;
 	float interval;
+	string numbers;
 };

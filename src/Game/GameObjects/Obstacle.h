@@ -11,4 +11,9 @@ public:
 	void drawDebug() override;
 	void receiveCarCollision(Player* car) override;
 	void receiveBulletCollision(GameObject* bullet) override;
+	ofBoxPrimitive box;
+	ofFbo fbo;
+	ofTexture texture;
+
+	ofConePrimitive cone;
 };
