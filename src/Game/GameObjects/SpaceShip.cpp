@@ -5,18 +5,15 @@
 
 SpaceShip::SpaceShip(Game *game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
 	model.loadModel("Intergalactic_Spaceship.dae");
-
-	collider->move(dim.x, dim.y, dim.z);
 	model.setRotation(0, 180, 0, 0, 1);
-	
-	model.setPosition(0, 300, 0);
 	model.setScale(0.50, 0.50, 0.50);
 	model.setLoopStateForAllAnimations(OF_LOOP_NORMAL);
 	model.playAllAnimations();
-
 	transform.rotateDeg(90, 0, 1, 0);
-	speed = 4;
-	bTurned = false;
+	speed = 6;
+	elapseTurningTime = ofGetElapsedTimef();
+	elapseShootingTime = ofGetElapsedTimef();
+	game->addGameObject(new Bomb(game, transform.getPosition(), glm::vec3(70)));
 }
 SpaceShip::~SpaceShip() {
 
@@ -24,34 +21,40 @@ SpaceShip::~SpaceShip() {
 
 void SpaceShip::update() {
 	model.update();
-	if ((ofGetElapsedTimef() - elapseTurningTime) > 3) {
+
+	if ((ofGetElapsedTimef() - elapseTurningTime) > 5) {
 		transform.rotateDeg(180, 0, 1, 0);
 		elapseTurningTime = ofGetElapsedTimef();
-		//this->shoot();
 	}
+	//std::cout << "Transform :" << transform.getX() << endl;
+	if (transform.getX() > 0 && transform.getX() < 3) {
+		this->game->addGameObject(new Bomb(this->game, transform.getPosition(), glm::vec3(70)));
+	}
+	/*if((ofGetElapsedTimef() - elapseShootingTime) > 6) {
+		this->game->addGameObject(new Bomb(this->game, transform.getPosition(), glm::vec3(70)));
+		elapseShootingTime = ofGetElapsedTimef();
+	}*/
+
 	transform.move(transform.getZAxis() * speed);
-	bTurned = false;
 
 };
 void SpaceShip::draw() {
+	ofEnableDepthTest();
 	transform.transformGL();
 	model.drawFaces();
-
-	ofDrawAxis(200);
 	transform.restoreTransformGL();
-
 	collider->drawWireframe();
 
 };
 
 void SpaceShip::shoot() {
-	game->addGameObject(new Bomb(game, transform));
+	
 }
-/*
-void Player::drawDebug() {
+
+void SpaceShip::drawDebug() {
 	collider->drawDebug();
 
 	transform.transformGL();
 	ofDrawAxis(100);
 	transform.restoreTransformGL();
-}*/
+}

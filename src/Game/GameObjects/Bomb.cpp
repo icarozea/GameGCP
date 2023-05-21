@@ -1,17 +1,19 @@
 #include "Bomb.h"
 #include "Game.h"
+#include "Player.h"
 
-Bomb::Bomb(Game *game, ofNode otherTransform)
-	:GameObject(game, otherTransform.getGlobalPosition(), glm::vec3(40))
+Bomb::Bomb(Game *game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim)
 {
-	transform.setGlobalOrientation(otherTransform.getGlobalOrientation());
 	material.setEmissiveColor(ofColor::black);
 }
 
 Bomb::~Bomb() {}
 
 void Bomb::update() {
-	transform.move(transform.getYAxis() * 2);
+	if (transform.getY() < 0) {
+		kill();
+	}
+	transform.move(transform.getYAxis() * -4);
 };
 
 void Bomb::draw() {
@@ -19,14 +21,24 @@ void Bomb::draw() {
 	material.begin();
 	{
 		collider->draw();
+		collider->drawDebug();
 	}
 	material.end();
+	transform.transformGL();
+	ofDrawAxis(100);
+	transform.restoreTransformGL();
 
 };
 
-void Bomb::checkCollisions() {
-	vector<GameObject*> collisions = game->getCollisions(this);
-	for (auto c : collisions) {
-		c->receiveBulletCollision(this);
-	}
+void Bomb::drawDebug() {
+	collider->drawDebug();
+
+	transform.transformGL();
+	ofDrawAxis(100);
+	transform.restoreTransformGL();
+}
+
+void Bomb::receiveCarCollision(Player *car) {
+	car->initPosition();
+	kill();
 }

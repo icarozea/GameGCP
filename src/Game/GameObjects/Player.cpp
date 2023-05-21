@@ -16,11 +16,14 @@ Player::Player(Game *game):GameObject(game, glm::vec3(100)){
 Player::~Player(){}
 
 void Player::init(){
-    transform.setPosition(0, 0, 0);
+	initPosition();
     speed = 0;
     bLight = false;
+	timeSkidded = 0;
     
     coins = 0;
+	turnLeft = 0;
+	turnRight = 0;
 }
 
 void Player::update(){
@@ -29,6 +32,20 @@ void Player::update(){
     
     if(speed > MAX_SPEED) speed = MAX_SPEED;
     if(speed < 0) speed = 0;
+	// Derrape del coche
+	if (timeSkidded > 0) {
+		if (ofGetElapsedTimef() - elapseSkiddedTime < 0.3) {
+			steerLeft();
+		}
+		else {
+			steerRight();
+		}
+		if (ofGetElapsedTimef() - elapseSkiddedTime > 0.6) {
+			timeSkidded -= 1;
+			elapseSkiddedTime = ofGetElapsedTimef();
+		}
+	
+	}
 }
 
 void Player::draw(){
@@ -63,9 +80,11 @@ void Player::checkCollisions(){
 
 void Player::steerLeft(){
     transform.rotateDeg(1, 0, 2, 0);
+	turnLeft += 1;
 }
 void Player::steerRight(){
     transform.rotateDeg(-1, 0, 2, 0);
+	turnRight += 1;
 }
 void Player::accelerate(){
     speed += 0.1;
@@ -77,6 +96,10 @@ void Player::brake(){
 void Player::stop(){
     speed = 0;
     transform.setPosition(prevPos);
+}
+
+void Player::doubleSpeed() {
+	speed = speed * 2;
 }
 
 void Player::toggleLight(){
@@ -94,6 +117,35 @@ void Player::addCoins(int n){
 int Player::getCoins(){
     return coins;
 }
+
+void Player::removeAllCoins() {
+	coins = 0;
+}
+
 void Player::shoot(){
     game->addGameObject(new Bullet(game, transform));
+}
+
+void Player::reduceSpeed() {
+		speed = MIN_SPEED;
+}
+
+void Player::moveCar() {
+	if (timeSkidded == 0)
+		timeSkidded = 3;
+}
+
+int Player::getTurnLeft()
+{
+	return turnLeft;
+}
+
+int Player::getTurnRight()
+{
+	return turnRight;
+}
+
+void Player::initPosition() {
+	transform.setPosition(0, 0, 0);
+	speed = 0;
 }

@@ -9,7 +9,7 @@ class Wall : public GameObject{
     
     
 public:
-    Wall(Game *game, glm::vec3 pos, glm::vec3 dim);
+    Wall(Game *game, glm::vec3 pos, glm::vec3 dim, int numRoad);
     ~Wall();
     
     void draw() override;

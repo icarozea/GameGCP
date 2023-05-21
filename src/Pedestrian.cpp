@@ -32,7 +32,7 @@ void Pedestrian::draw(){
     transform.transformGL();
     model.drawFaces();
     
-    ofDrawAxis(200);
+    //ofDrawAxis(200);
     transform.restoreTransformGL();
 
     //collider->drawWireframe();

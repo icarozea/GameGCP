@@ -5,6 +5,7 @@
 
 Goal::Goal(Game *game, glm::vec3 pos, glm::vec3 dim): GameObject(game, pos, dim){
     material.setEmissiveColor(ofColor::green);
+	transform.rotateDeg(90, 0, 1, 0);
 }
 Goal::~Goal(){}
 

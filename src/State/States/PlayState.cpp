@@ -17,6 +17,7 @@ void PlayState::update(){
         game->getPlayer()->accelerate();
     if(ofGetKeyPressed(OF_KEY_DOWN))
         game->getPlayer()->brake();
+	
 };
     
 void PlayState::draw(){
@@ -34,6 +35,10 @@ void PlayState::draw(){
         ofDrawBitmapString("Speed: " + ofToString(game->getPlayer()->getSpeed(), 2), 0, 0);
         ofTranslate(0, 20);
         ofDrawBitmapString("Coins: " + ofToString(game->getPlayer()->getCoins(), 2), 0, 0);
+		ofTranslate(0, 20);
+		ofDrawBitmapString("Turn Left: " + ofToString(game->getPlayer()->getTurnLeft(), 2), 0, 0);
+		ofTranslate(0, 20);
+		ofDrawBitmapString("Turn Right: " + ofToString(game->getPlayer()->getTurnRight(), 2), 0, 0);
 
     }
     ofPopMatrix();

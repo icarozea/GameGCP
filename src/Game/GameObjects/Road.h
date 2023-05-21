@@ -5,16 +5,15 @@
 
 class Road : public GameObject{
     
-    ofLight light;
-	ofLight light2;
-	ofLight light3;
+	vector<ofLight> lights;
     ofPlanePrimitive plane;
 public:
-    Road(Game *game, glm::vec3 pos, glm::vec3 dim);
+    Road(Game *game, glm::vec3 pos, glm::vec3 dim, int numRoad);
     ~Road();
     
     void draw() override;
     void drawDebug() override;
+	vector<ofLight> getLightsRoad(glm::vec3 pos, int numRoad);
     
 };
 
