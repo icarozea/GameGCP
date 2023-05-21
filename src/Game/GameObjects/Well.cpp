@@ -7,7 +7,7 @@ Well::Well(Game *game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim
 	plane.setParent(transform);
 	collider->set(dim.x - 750, dim.y - 500, dim.z - 1100);
 	transform.rotateDeg(-90, 1, 0, 0);
-	transform.rotateDeg(65, 0, 1, 0);
+	//transform.rotateDeg(65, 0, 1, 0);
 	plane.set(dim.x, dim.z);
 	ofEnableNormalizedTexCoords();
 	ofDisableArbTex();
@@ -21,9 +21,9 @@ Well::~Well() {}
 
 void Well::draw() {
 
-	collider->drawWireframe();
+	//collider->drawWireframe();
 	transform.transformGL();
-	ofDrawAxis(100);
+	//ofDrawAxis(100);
 	transform.restoreTransformGL();
 	texture.bind();
 	plane.draw();

@@ -5,8 +5,8 @@
 
 Coin::Coin(Game *game, glm::vec3 pos, glm::vec3 dim):GameObject(game, pos, dim) {
     material.setDiffuseColor(ofColor::yellow);
-	fbo.allocate(400, 400);
-	ofLoadImage(texture, "moneda.jpg");
+	//fbo.allocate(400, 400);
+	//ofLoadImage(texture, "moneda.jpg");
 }
 Coin::~Coin(){
     
@@ -21,9 +21,9 @@ void Coin::draw(){
     
     material.begin();
     {
-		texture.bind();
+		//texture.bind();
 		collider->draw();
-		texture.unbind();
+		//texture.unbind();
     }
     material.end();
 }

@@ -5,9 +5,7 @@
 
 Gate::Gate(Game* game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
 	material.setEmissiveColor(ofColor::gray);
-	collider->setPosition(pos);
-	//std::cout << "Collider position: " << collider->getPosition().y << endl;
-	collider->set(dim.x, dim.y, dim.z);
+	transform.rotateDeg(90, 0, 1, 0);
 }
 Gate::~Gate() {}
 

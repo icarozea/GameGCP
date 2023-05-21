@@ -5,7 +5,7 @@
 OilStain::OilStain(Game *game, glm::vec3 pos, glm::vec3 dim) : GameObject(game, pos, dim) {
 
 	plane.setParent(transform);
-	collider->set(dim.x - 400, dim.y - 120, dim.z - 400);
+	collider->set(dim.x - 700, dim.y - 250, dim.z - 900);
 	transform.rotateDeg(-90, 1, 0, 0);
 	plane.set(dim.x, dim.z);
 	ofEnableNormalizedTexCoords();

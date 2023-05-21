@@ -22,7 +22,7 @@ Crane::~Crane() {
 
 void Crane::update() {
 	model.update();
-	//this->updateHookPosition();	
+	this->updateHookPosition();	
 };
 void Crane::draw() {
 	ofEnableDepthTest();
@@ -30,7 +30,7 @@ void Crane::draw() {
 	model.drawFaces();
 	ofDrawAxis(100);
 	transform.restoreTransformGL();
-	//collider->drawWireframe();
+	collider->drawWireframe();
 
 };
 
