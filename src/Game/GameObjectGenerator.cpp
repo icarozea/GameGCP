@@ -13,6 +13,9 @@
 #include "crane.h"
 #include "Hook.h"
 #include "SpeedArrow.h"
+#include "CrazyBow.h"
+#include "Gate.h"
+#include "Obstacle.h"
 
 GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
 
@@ -138,12 +141,25 @@ void GameObjectGenerator::generateWorld(){
 
 	game->addGameObject(well);
 
-	//auto hook = new Hook(game, glm::vec3(0, -25, 600), glm::vec3(200));
-
 	auto crane = new Crane(game,
 		glm::vec3(0, 50, 5000), glm::vec3(200, 50, 300));
 	
 	game->addGameObject(crane);
+
+	auto obst = new Obstacle(game,
+		glm::vec3(0, 0, 7800), glm::vec3(200));
+
+	game->addGameObject(obst);
+
+	auto gate = new Gate(game,
+		glm::vec3(0, 65, 10000),
+		glm::vec3(W / 2 - 200, 350, 50));
+	game->addGameObject(gate);
+
+	auto crazyBow = new CrazyBow(game,
+		glm::vec3(W / 8, 15, 400),
+		glm::vec3(180, 55, 50));
+	game->addGameObject(crazyBow);
 	
 
 }

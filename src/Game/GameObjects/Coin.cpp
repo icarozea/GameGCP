@@ -4,10 +4,7 @@
 
 
 Coin::Coin(Game *game, glm::vec3 pos, glm::vec3 dim):GameObject(game, pos, dim) {
-    material.setDiffuseColor(ofColor::yellow);
-        
- 
-    
+    material.setDiffuseColor(ofColor::yellow);  
 }
 Coin::~Coin(){
     
@@ -43,5 +40,5 @@ void Coin::receiveCarCollision(Player *car){
 void Coin::receiveBulletCollision(GameObject *bullet){
     bullet->kill();
     kill();
-    game->getPlayer()->addCoins(1000);
+    //game->getPlayer()->addCoins(1000);
 }

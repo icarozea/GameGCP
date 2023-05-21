@@ -47,7 +47,7 @@ void Pedestrian::receiveBulletCollision(GameObject *bullet) {
     
     bullet->kill();
     kill();
-    game->getPlayer()->addCoins(1000);
+    game->getPlayer()->addCoins(100);
  
 };
 
@@ -66,3 +66,8 @@ void Pedestrian::checkCollisions(){
         c->receivePedestrianCollision(this);
     }
 }
+
+void Pedestrian::setSpeed(int newSpeed) {
+	speed = newSpeed;
+}
+;

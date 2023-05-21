@@ -123,7 +123,10 @@ void Player::removeAllCoins() {
 }
 
 void Player::shoot(){
-    game->addGameObject(new Bullet(game, transform));
+	if (getCoins() >= 1) {
+		game->addGameObject(new Bullet(game, transform));
+		game->getPlayer()->addCoins(-1);
+	}
 }
 
 void Player::reduceSpeed() {

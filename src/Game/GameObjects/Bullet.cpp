@@ -29,5 +29,6 @@ void Bullet::checkCollisions(){
     vector<GameObject*> collisions = game->getCollisions(this);
     for(auto c: collisions){
         c->receiveBulletCollision(this);
+		bAlive = false;
     }
 }
