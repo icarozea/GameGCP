@@ -27,4 +27,6 @@ public:
 	float timer = 0;
 	float interval;
 	string numbers;
+
+	ofMesh halfCircle;
 };

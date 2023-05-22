@@ -16,6 +16,8 @@ class ofApp : public ofBaseApp{
 		void keyReleased(int key);
 		
         Game *game;
+		Player* player;
+
 		int coins = 0;
 		float initTime = 0;
 };

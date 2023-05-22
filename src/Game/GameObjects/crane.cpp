@@ -28,9 +28,9 @@ void Crane::draw() {
 	ofEnableDepthTest();
 	transform.transformGL();
 	model.drawFaces();
-	ofDrawAxis(100);
+	//ofDrawAxis(100);
 	transform.restoreTransformGL();
-	collider->drawWireframe();
+	//collider->drawWireframe();
 
 };
 

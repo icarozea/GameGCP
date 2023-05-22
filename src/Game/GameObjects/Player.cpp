@@ -126,6 +126,7 @@ void Player::shoot(){
 	if (getCoins() >= 1) {
 		game->addGameObject(new Bullet(game, transform));
 		game->getPlayer()->addCoins(-1);
+		game->doScreamShot();
 	}
 }
 

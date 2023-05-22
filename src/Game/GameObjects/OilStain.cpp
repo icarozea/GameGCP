@@ -20,10 +20,10 @@ OilStain::~OilStain() {}
 
 void OilStain::draw() {
 
-	collider->drawWireframe();
-	transform.transformGL();
-	ofDrawAxis(100);
-	transform.restoreTransformGL();
+	//collider->drawWireframe();
+	//transform.transformGL();
+	//ofDrawAxis(100);
+	//transform.restoreTransformGL();
 	texture.bind();
 	plane.draw();
 	texture.unbind();
@@ -31,6 +31,7 @@ void OilStain::draw() {
 
 void OilStain::receiveCarCollision(Player *car) {
 	car->moveCar();
+	game->doScreamOilStation();
 }
 
 

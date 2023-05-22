@@ -1,5 +1,6 @@
 #include "Obstacle.h"
 #include "Player.h"
+#include "Game.h"
 
 Obstacle::Obstacle(Game* game, glm::vec3 pos, glm::vec3 dim) :
 	GameObject(game, pos, dim) {
@@ -39,6 +40,7 @@ void Obstacle::drawDebug()
 
 void Obstacle::receiveCarCollision(Player* player)
 {
+	game->doScreamObstacle();
 	player->stop();
 }
 

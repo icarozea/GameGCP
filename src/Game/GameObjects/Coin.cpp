@@ -38,6 +38,7 @@ void Coin::drawDebug() {
 
 void Coin::receiveCarCollision(Player *car){
     car->addCoins(5);
+	game->doScreamGettingCoins();
     kill();
 }
 

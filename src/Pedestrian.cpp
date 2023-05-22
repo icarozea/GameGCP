@@ -41,6 +41,7 @@ void Pedestrian::draw(){
 void Pedestrian::receiveCarCollision(Player *car) {
     kill();
     game->doScream();
+	game->getPlayer()->addCoins(100);
 };
 
 void Pedestrian::receiveBulletCollision(GameObject *bullet) {

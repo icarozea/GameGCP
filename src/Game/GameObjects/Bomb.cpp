@@ -21,12 +21,12 @@ void Bomb::draw() {
 	material.begin();
 	{
 		collider->draw();
-		collider->drawDebug();
+		//collider->drawDebug();
 	}
 	material.end();
-	transform.transformGL();
-	ofDrawAxis(100);
-	transform.restoreTransformGL();
+	//transform.transformGL();
+	//ofDrawAxis(100);
+	//transform.restoreTransformGL();
 
 };
 

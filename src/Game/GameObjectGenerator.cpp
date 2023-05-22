@@ -5,31 +5,33 @@
 #include "Wall.h"
 #include "Goal.h"
 #include "Coin.h"
-#include "Pedestrian.h"
-#include "SpaceShip.h"
-#include "Sand.h"
-#include "OilStain.h"
-#include "Well.h"
-#include "crane.h"
-#include "Hook.h"
-#include "SpeedArrow.h"
-#include "CrazyBow.h"
-#include "Gate.h"
 #include "Obstacle.h"
+#include "Pedestrian.h"
+#include "Gate.h"
+#include "SpaceShip.h"
+#include "CrazyBow.h"
+//#include "BuildCenter.h"
+#include "Sand.h"
+#include "Well.h"
+#include "SpeedArrow.h"
+#include "OilStain.h"
+#include "Hook.h"
+#include "Crane.h"
 
-GameObjectGenerator::GameObjectGenerator(Game *game): game(game){}
+GameObjectGenerator::GameObjectGenerator(Game* game) : game(game) {}
 
-void GameObjectGenerator::generateWorld(){
-    int W = game->ROAD_WIDTH;
-    int L = game->ROAD_LENGTH;
+void GameObjectGenerator::generateWorld() {
+	int W = game->ROAD_WIDTH;
+	int L = game->ROAD_LENGTH;
 
 	int LSR = 10000;
 	int wallSize = 100;
 
-	
+
+
 	//Road 1 and things
-    glm::vec3 roadPosition(0, -50.1, L/2 - 1000);
-    auto road1 = new Road(game, roadPosition, glm::vec3(W, 0, L), 1);	
+	glm::vec3 roadPosition(0, -50.1, L / 2 - 1000);
+	auto road1 = new Road(game, roadPosition, glm::vec3(W, 0, L), 1);
 	game->addGameObject(road1);
 
 	auto wall_1 = new Wall(game,
@@ -49,7 +51,7 @@ void GameObjectGenerator::generateWorld(){
 		glm::vec3(0, -25, 600), glm::vec3(50));
 
 	game->addGameObject(coin);
-	game->addGameObject(coin2);
+	//game->addGameObject(coin2);
 
 	auto pedestrian = new Pedestrian(game,
 		glm::vec3(roadPosition.x + (W / 2 - 100), -25, roadPosition.z / 2), glm::vec3(50, 150, 50));
@@ -75,7 +77,7 @@ void GameObjectGenerator::generateWorld(){
 	game->addGameObject(sand);
 
 	auto speedArrow = new SpeedArrow(game,
-		glm::vec3((W / 2) - 1400, -48.5, roadPosition.z + 2000), glm::vec3(800));
+		glm::vec3((W / 2) - 1400, -48.5, roadPosition.z + 2000), glm::vec3(800),1);
 
 	game->addGameObject(speedArrow);
 
@@ -85,10 +87,11 @@ void GameObjectGenerator::generateWorld(){
 	game->addGameObject(oilStain);
 
 	auto crazyBow = new CrazyBow(game,
-		glm::vec3(W / 8, 15, 400),
-		glm::vec3(180, 55, 50));
+		glm::vec3(roadPosition.x + 700, 20, L * .98),
+		glm::vec3(350, 200, 50));
 	game->addGameObject(crazyBow);
-	
+
+
 	//Road 2 and things
 	glm::vec3 roadPosition2(-8000, -50.1, L / 2 - 1000);
 	auto road2 = new Road(game, roadPosition2, glm::vec3(W, 0, L), 2);
@@ -104,12 +107,12 @@ void GameObjectGenerator::generateWorld(){
 	game->addGameObject(wall_4);
 
 	auto pedestrian2 = new Pedestrian(game,
-		glm::vec3(roadPosition2.x + (W / 2 - 100), -25, roadPosition2.z / 2), glm::vec3(50, 150, 50));
+		glm::vec3(roadPosition2.x + (W / 2 - 100), -25, (roadPosition2.z / 2) + 1000), glm::vec3(50, 150, 50));
 	game->addGameObject(pedestrian2);
 
-	//auto spaceShip2 = new SpaceShip(game,
-	//glm::vec3(roadPosition2.x + (W / 2) - 500, 300, (roadPosition2.z / 2) + 2000), glm::vec3(200, 50, 300));
-	//game->addGameObject(spaceShip2);
+	auto spaceShip2 = new SpaceShip(game,
+		glm::vec3(roadPosition2.x + (W / 2) - 500, 300, (roadPosition2.z / 2) + 3000), glm::vec3(200, 50, 300));
+	game->addGameObject(spaceShip2);
 
 	auto obst2 = new Obstacle(game,
 		glm::vec3(roadPosition2.x - 500, 100, roadPosition.z), glm::vec3(400));
@@ -140,6 +143,11 @@ void GameObjectGenerator::generateWorld(){
 
 	game->addGameObject(crane);
 
+	auto speedArrow2 = new SpeedArrow(game,
+		glm::vec3(roadPosition3.x -1000, -48.5, roadPosition3.z - 500), glm::vec3(800), 2);
+
+	game->addGameObject(speedArrow2);
+
 	auto obst3 = new Obstacle(game,
 		glm::vec3(roadPosition3.x, -25, roadPosition3.z), glm::vec3(200));
 
@@ -153,7 +161,7 @@ void GameObjectGenerator::generateWorld(){
 	glm::vec3 roadPosition4(-4000, -50.1, 0);
 	auto road4 = new Road(game, roadPosition4, glm::vec3(W, 0, LSR), 4);
 	game->addGameObject(road4);
-    
+
 	auto wall_7 = new Wall(game,
 		glm::vec3(roadPosition4.x, roadPosition4.y, roadPosition4.z + (W / 2)),
 		glm::vec3(wallSize, wallSize, LSR - 4000), 4);
@@ -162,7 +170,7 @@ void GameObjectGenerator::generateWorld(){
 		glm::vec3(roadPosition4.x, roadPosition4.y, roadPosition4.z - (W / 2)),
 		glm::vec3(wallSize, wallSize, LSR), 4);
 	game->addGameObject(wall_8);
-	
+
 	auto goal = new Goal(game,
 		glm::vec3(-W / 2, roadPosition.y, 0),
 		glm::vec3(W, 100, 100));
@@ -183,6 +191,13 @@ void GameObjectGenerator::generateWorld(){
 		glm::vec3(roadPosition4.x + 1000, 100, roadPosition4.z - 500), glm::vec3(400));
 	game->addGameObject(obst4);
 
-	
+	auto coin3 = new Coin(game,
+		glm::vec3(roadPosition4.x + 1000, -25, 600), glm::vec3(50));
 
+	game->addGameObject(coin3);
+
+	//Center and things
+	/*auto buildCenter = new BuildCenter(game,
+		glm::vec3(roadPosition.x - 2500, -25, roadPosition.z - 2000), glm::vec3(0));
+	game->addGameObject(buildCenter);*/
 }

@@ -13,7 +13,7 @@ SpaceShip::SpaceShip(Game *game, glm::vec3 pos, glm::vec3 dim) : GameObject(game
 	speed = 6;
 	elapseTurningTime = ofGetElapsedTimef();
 	elapseShootingTime = ofGetElapsedTimef();
-	game->addGameObject(new Bomb(game, transform.getPosition(), glm::vec3(70)));
+	posxInit = pos.x;
 }
 SpaceShip::~SpaceShip() {
 
@@ -26,14 +26,12 @@ void SpaceShip::update() {
 		transform.rotateDeg(180, 0, 1, 0);
 		elapseTurningTime = ofGetElapsedTimef();
 	}
-	//std::cout << "Transform :" << transform.getX() << endl;
-	if (transform.getX() > 0 && transform.getX() < 3) {
+
+	if (transform.getX() > posxInit - 500 && transform.getX() < posxInit - 497) {
+		//std::cout << "posxInit1 :" << posxInit - 500 << endl;
+		//std::cout << "posxInit2 :" << posxInit - 497 << endl;
 		this->game->addGameObject(new Bomb(this->game, transform.getPosition(), glm::vec3(70)));
 	}
-	/*if((ofGetElapsedTimef() - elapseShootingTime) > 6) {
-		this->game->addGameObject(new Bomb(this->game, transform.getPosition(), glm::vec3(70)));
-		elapseShootingTime = ofGetElapsedTimef();
-	}*/
 
 	transform.move(transform.getZAxis() * speed);
 
@@ -43,7 +41,7 @@ void SpaceShip::draw() {
 	transform.transformGL();
 	model.drawFaces();
 	transform.restoreTransformGL();
-	collider->drawWireframe();
+	//collider->drawWireframe();
 
 };
 

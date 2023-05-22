@@ -21,7 +21,7 @@ Sand::~Sand() {}
 
 void Sand::draw() {
 	
-	collider->drawWireframe();
+	//collider->drawWireframe();
 	//transform.transformGL();
 	//ofDrawAxis(100);
 	//transform.restoreTransformGL();
@@ -32,6 +32,7 @@ void Sand::draw() {
 
 void Sand::receiveCarCollision(Player *car) {
 	car->reduceSpeed();
+	game->doScreamSand();
 }
 
 

@@ -5,16 +5,19 @@
 #include "Game.h"
 
 
-class PlayState: public State{
+class PlayState : public State {
 public:
-    PlayState(Game *game);
-    
-    ~PlayState(){};
-    
-    void update();
-    void draw();
-    void next();
-    void keyPressed(int key);
-        
+	PlayState(Game* game, float initTime, float initCoins);
+
+	~PlayState() {};
+
+	void update();
+	void draw();
+	void next();
+	void keyPressed(int key);
+
+	float initTime;
+	int initCoins;
+
 };
 #endif

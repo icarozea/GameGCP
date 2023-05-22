@@ -4,19 +4,19 @@
 #include "State.h"
 #include "Game.h"
 
-class MenuState: public State{
+class MenuState : public State {
 public:
-    MenuState(Game *game): State(game, "Menu State"){
-    };
-    
-    ~MenuState(){};
-    
-    void update();
-    void draw();
-    void next();
+	MenuState(Game* game) : State(game, "Menu State") {
+	};
+
+	~MenuState() {};
+
+	void update();
+	void draw();
+	void next();
 
 	float initTime = 0;
 	int intCoins = 0;
-        
+
 };
 #endif 

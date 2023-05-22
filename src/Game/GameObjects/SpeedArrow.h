@@ -4,7 +4,7 @@ class SpeedArrow : public GameObject {
 	ofPlanePrimitive plane;
 	ofTexture texture;
 public:
-	SpeedArrow(Game *game, glm::vec3 pos, glm::vec3 dim);
+	SpeedArrow(Game *game, glm::vec3 pos, glm::vec3 dim, int direction);
 	~SpeedArrow();
 
 	void draw() override;

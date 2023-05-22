@@ -33,9 +33,9 @@ void Hook::draw() {
 	ofEnableDepthTest();
 	transform.transformGL();
 	model.drawFaces();
-	ofDrawAxis(100);
+	//ofDrawAxis(100);
 	transform.restoreTransformGL();
-	collider->drawWireframe();
+	//collider->drawWireframe();
 
 };
 
@@ -57,5 +57,6 @@ void Hook::updatePosition(int posX, int posY) {
 
 void Hook::receiveCarCollision(Player *car) {
 	car->removeAllCoins();
+	game->doScreamLessCoin();
 	turningHook = true;
 }

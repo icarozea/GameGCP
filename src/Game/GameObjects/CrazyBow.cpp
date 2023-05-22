@@ -1,12 +1,13 @@
 #include "CrazyBow.h"
 #include "Player.h"
+#include "Game.h"
 
 CrazyBow::CrazyBow(Game* game, glm::vec3 pos, glm::vec3 dim) :
 	GameObject(game, pos, dim) {
 	material.setDiffuseColor(ofColor::white);
 
-	collider->setPosition(pos);
-	collider->set(dim.x, dim.y, dim.z);
+	//collider->setPosition(pos);
+	//collider->set(dim.x, dim.y, dim.z);
 
 	interval = 10.0f;
 	randomValue = ofRandom(47);
@@ -15,6 +16,19 @@ CrazyBow::CrazyBow(Game* game, glm::vec3 pos, glm::vec3 dim) :
 	ofEnableNormalizedTexCoords();
 
 	fbo.allocate(400, 400);
+	halfCircle.setMode(OF_PRIMITIVE_TRIANGLE_FAN);
+	int numVertices = 50;
+	float radius = 180.0f;
+	float angleStep = 180.0f / (numVertices - 1);
+	float angle = 0.0f;
+	halfCircle.addVertex(ofVec3f(0, 0, 0));
+	for (int i = 0; i < numVertices; i++) {
+		float x = radius * cos(ofDegToRad(angle));
+		float y = radius * sin(ofDegToRad(angle));
+		halfCircle.addVertex(ofVec3f(x, y, 0));
+		angle += angleStep;
+	}
+
 	font.load("verdana.ttf", 55, true, true);
 }
 
@@ -30,18 +44,16 @@ void CrazyBow::update()
 {
 	fbo.begin();
 	{
-		ofBackground(255);
+		ofBackground(255, 24, 215);
 		timer += ofGetLastFrameTime();
 		if (timer >= interval) {
 			timer = 0;
 			getCoin = true;
 			randomValue = updateRandomNumber();
 
-			//std::cout << "Get Coin? " << getCoin << " | Value: " << randomValue << endl;
-
+			ofSetColor(255);
 			numbers = ofToString(randomValue);
-			ofSetColor(ofRandom(255), ofRandom(255), ofRandom(255));
-			font.drawString(ofToString(randomValue), collider->getPosition().x + 250, collider->getPosition().y);
+			font.drawString(ofToString(randomValue), collider->getPosition().x, collider->getPosition().y);
 
 		}
 	}
@@ -56,15 +68,9 @@ void CrazyBow::draw()
 		fbo.getTexture().bind();
 		{
 			ofPushMatrix();
-			ofTranslate(collider->getPosition().x + 250, collider->getPosition().y - 30, 800);
-
-			ofPath path;
-			path.arc(0, 0, 100, 100, 0, 180);
-			path.setCircleResolution(50);
-			path.setFilled(true);
-
-			path.getTessellation().draw();
-
+			ofTranslate(collider->getPosition().x + 700, collider->getPosition().y, collider->getGlobalPosition().z);
+			ofSetColor(255);
+			halfCircle.draw();
 			ofPopMatrix();
 		}
 		fbo.getTexture().unbind();
@@ -75,6 +81,7 @@ void CrazyBow::draw()
 void CrazyBow::drawDebug()
 {
 	collider->drawDebug();
+
 }
 
 void CrazyBow::receiveCarCollision(Player* player)
@@ -82,6 +89,7 @@ void CrazyBow::receiveCarCollision(Player* player)
 	if (getCoin) {
 		player->addCoins(randomValue);
 		getCoin = false;
+		game->doScreamCrazyArrow();
 	}
 }
 
